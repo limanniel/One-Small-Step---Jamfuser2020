@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class ScriptPlayerController : MonoBehaviour
 {
-
     public float fSpeed;
     public float fJump;
     public float fGravity;
     public float fMaxSpeed;
+    public float fUpForce;
 
     private Vector2 netForce;
 
@@ -40,17 +40,15 @@ public class ScriptPlayerController : MonoBehaviour
         float moveX = Input.GetAxis("Horizontal");
         float moveY = Input.GetAxis("Vertical");
         Vector2 movement = new Vector2(moveX * fSpeed, moveY * fSpeed);
-
+        Vector2 gravityForce = new Vector2(0.0f, fGravity);
+        Vector2 upForce = new Vector2(0.0f, -fGravity);
         Vector2 jumpForce = new Vector2(0.0f, fJump);
 
-        netForce = movement + jumpForce;
+        netForce = movement + jumpForce + gravityForce;
     }
 
-    private void OnTriggerEnter2D(Collider2D other)
+    public void HandleCollision(PlayerCollisionHandler playerCollisionHandler)
     {
         Debug.Log("You're colliding!");
-        Destroy(this);
-        this.gameObject.SetActive(false);
     }
-
 }
