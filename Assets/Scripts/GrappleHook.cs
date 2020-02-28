@@ -33,6 +33,7 @@ public class GrappleHook : MonoBehaviour
 
         if (Input.GetMouseButtonDown(0))
         {
+            this.GetComponent<ScriptPlayerController>().GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Dynamic;
             targetPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             targetPos.z = 0;
 
@@ -63,6 +64,7 @@ public class GrappleHook : MonoBehaviour
 
         if (Input.GetMouseButtonUp(0))
         {
+            this.GetComponent<ScriptPlayerController>().GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Kinematic;
             joint.enabled = false;
             rope.enabled = false;
         }

@@ -13,7 +13,7 @@ public class ScriptPlayerController : MonoBehaviour
     private Vector2 netForce;
 
     [SerializeField]
-    private Rigidbody2D rigidbody2D;
+    public Rigidbody2D rigidbody2D;
 
     // Start is called before the first frame update
     void Start()
