@@ -10,15 +10,27 @@ public class GrappleHook : MonoBehaviour
     RaycastHit2D hit;
     public float distance = 30.0f;
     public LayerMask mask;
+    public LineRenderer rope;
+    float ropePull = 3.0f;
 
     void Start()
     {
         joint = GetComponent<DistanceJoint2D>();
+        joint.enabled = false;
+        rope.enabled = false;
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (joint.distance > 1.0f)
+            joint.distance -= Time.deltaTime * ropePull;
+        else
+        {
+            rope.enabled = false;
+            joint.enabled = false;
+        }
+
         if (Input.GetMouseButtonDown(0))
         {
             targetPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
@@ -32,13 +44,27 @@ public class GrappleHook : MonoBehaviour
             {
                 joint.enabled = true;
                 joint.connectedBody = hit.collider.gameObject.GetComponent<Rigidbody2D>();
-                joint.connectedAnchor = hit.point - new Vector2(hit.collider.transform.position.x, hit.collider.transform.position.y);
+
+                // Ensure hook hits at the position that was clicked on object.
+                //joint.connectedAnchor = hit.point - new Vector2(hit.collider.transform.position.x, hit.collider.transform.position.y);
+
                 joint.distance = Vector2.Distance(transform.position, hit.point);
+
+                // Set rope position
+                rope.enabled = true;
+                rope.SetPosition(0, transform.position);
+                rope.SetPosition(1, hit.point);
             }
         }
+        if (Input.GetMouseButton(0))
+        {
+            rope.SetPosition(0, transform.position);
+        }
+
         if (Input.GetMouseButtonUp(0))
         {
             joint.enabled = false;
+            rope.enabled = false;
         }
     }
 }
