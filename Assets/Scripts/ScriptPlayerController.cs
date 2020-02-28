@@ -50,5 +50,6 @@ public class ScriptPlayerController : MonoBehaviour
     public void HandleCollision(PlayerCollisionHandler playerCollisionHandler)
     {
         Debug.Log("You're colliding!");
+        
     }
 }
