@@ -46,9 +46,19 @@ public class ScriptPlayerController : MonoBehaviour
         
         rigidbody2D.AddForce(movement * fSpeed * 5);
         rigidbody2D.velocity = Vector2.ClampMagnitude(rigidbody2D.velocity, fMaxSpeed);
+        animation.SetFloat("Speed", Mathf.Abs(rigidbody2D.velocity.x));
 
         if (Input.GetButtonDown("Jump") && IsGrounded())
             bIsJumping = true;
+
+        if (moveX < 0 && !facingLeft)
+        {
+            reverseImage();
+        }
+        else if (moveX > 0 && facingLeft)
+        {
+            reverseImage();
+        }
 
     }
 
@@ -63,21 +73,11 @@ public class ScriptPlayerController : MonoBehaviour
                     rigidbody2D.velocity = new Vector2(rigidbody2D.velocity.x, fJumpTimer * 5.0f);
             }
         }
-         else
+        else
         {
             bIsJumping = false;
             fJumpTimer = 0.0f;
         }
-        
-        if (moveX < 0 && !facingLeft)
-        {
-            reverseImage();
-        }
-        else if (moveX > 0 && facingLeft)
-        {
-            reverseImage();
-        }
-
     }
 
     public void HandleCollision(PlayerCollisionHandler playerCollisionHandler)
