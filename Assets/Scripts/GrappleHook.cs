@@ -8,10 +8,11 @@ public class GrappleHook : MonoBehaviour
     DistanceJoint2D joint;
     Vector3 targetPos;
     RaycastHit2D hit;
-    public float distance = 30.0f;
+    public float distance = 20.0f;
     public LayerMask mask;
     public LineRenderer rope;
-    float ropePull = 3.0f;
+    float ropePull = 4.0f;
+    public GameObject player;
 
     void Start()
     {
@@ -23,12 +24,13 @@ public class GrappleHook : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (joint.distance > 1.0f)
+        if (joint.distance > 2.0f)
             joint.distance -= Time.deltaTime * ropePull;
+            
         else
         {
-            rope.enabled = false;
-            joint.enabled = false;
+            //rope.enabled = false;
+            //joint.enabled = false;
         }
 
         if (Input.GetMouseButtonDown(0))
@@ -52,6 +54,8 @@ public class GrappleHook : MonoBehaviour
                 rope.enabled = true;
                 rope.SetPosition(0, transform.position);
                 rope.SetPosition(1, hit.point);
+
+                player.GetComponent<Rigidbody2D>().velocity = new Vector2((targetPos.x - transform.position.x), (targetPos.y - transform.position.y) *2);
             }
         }
         if (Input.GetMouseButton(0))

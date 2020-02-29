@@ -616,7 +616,7 @@ PrefabInstance:
     - target: {fileID: 8844586491051261342, guid: ae62a5c9dfe5c8549ac970cab70cbbf1,
         type: 3}
       propertyPath: m_GravityScale
-      value: 1
+      value: 0.7
       objectReference: {fileID: 0}
     - target: {fileID: 8844586491051261342, guid: ae62a5c9dfe5c8549ac970cab70cbbf1,
         type: 3}
@@ -714,6 +714,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 55
   rope: {fileID: 205415404}
+  player: {fileID: 8844586491694066176}
 --- !u!232 &8844586491694066178
 DistanceJoint2D:
   m_ObjectHideFlags: 0
