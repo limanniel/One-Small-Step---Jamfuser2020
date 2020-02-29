@@ -16,8 +16,9 @@ public class ScriptPlayerController : MonoBehaviour
     private bool bIsJumping;
     public LayerMask ground;
 
-    [SerializeField]
-    public Rigidbody2D rigidbody2D;
+    private new Rigidbody2D rigidbody2D;
+    private new Animator animation;
+    private bool facingLeft;
 
     private Vector2 movement;
 
@@ -25,7 +26,9 @@ public class ScriptPlayerController : MonoBehaviour
     void Start()
     {
         rigidbody2D = GetComponent<Rigidbody2D>();
+        animation = GetComponent<Animator>();
         rigidbody2D.isKinematic = false;
+        facingLeft = false;
 
         //fFallMultiplier = 2.5f;
         //fLowJumpMultiplier = 2.0f;
@@ -60,11 +63,21 @@ public class ScriptPlayerController : MonoBehaviour
                     rigidbody2D.velocity = new Vector2(rigidbody2D.velocity.x, fJumpTimer * 5.0f);
             }
         }
-        else
+         else
         {
             bIsJumping = false;
             fJumpTimer = 0.0f;
         }
+        
+        if (moveX < 0 && !facingLeft)
+        {
+            reverseImage();
+        }
+        else if (moveX > 0 && facingLeft)
+        {
+            reverseImage();
+        }
+
     }
 
     public void HandleCollision(PlayerCollisionHandler playerCollisionHandler)
@@ -82,5 +95,13 @@ public class ScriptPlayerController : MonoBehaviour
         if (hit.collider != null)
             return true;
         return false;
+    }
+
+    private void reverseImage()
+    {
+        facingLeft = !facingLeft;
+        Vector3 scale = rigidbody2D.transform.localScale;
+        scale.x *= -1;
+        rigidbody2D.transform.localScale = scale;
     }
 }
