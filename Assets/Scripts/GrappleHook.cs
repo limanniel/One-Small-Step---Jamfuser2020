@@ -11,7 +11,8 @@ public class GrappleHook : MonoBehaviour
     public float distance = 30.0f;
     public LayerMask mask;
     public LineRenderer rope;
-    float ropePull = 3.0f;
+    float ropePull = 4.0f;
+    public GameObject player;
 
     void Start()
     {
@@ -52,6 +53,8 @@ public class GrappleHook : MonoBehaviour
                 rope.enabled = true;
                 rope.SetPosition(0, transform.position);
                 rope.SetPosition(1, hit.point);
+
+                player.GetComponent<Rigidbody2D>().velocity = new Vector2((targetPos.x - transform.position.x), (targetPos.y - transform.position.y) *2);
             }
         }
         if (Input.GetMouseButton(0))
