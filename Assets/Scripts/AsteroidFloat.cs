@@ -17,7 +17,7 @@ public class AsteroidFloat : MonoBehaviour
         passiveRotationStrength = Random.Range(0.1f, 0.2f);
         passiveRotationStrength *= Random.value < 0.5 ? 1 : -1;
 
-        //JumpOff(5.0f, Vector2.right);
+        JumpOff(5.0f, Vector2.right);
     }
 
     void FixedUpdate()

@@ -12,10 +12,12 @@ public class StartGen : MonoBehaviour
     {
         for (int i = 0; i < numberOfAsteroids; i++)
         {
-            GameObject obj = (GameObject)Instantiate(Resources.Load("asteroid"));
+            GameObject obj = (GameObject)Instantiate(Resources.Load("meteor"));
 
-            Vector3 randomPos = new Vector3(Random.Range(-10, 10), Random.Range(minYPosition, maxYPosition), 0);
+            Vector2 randomPos = new Vector3(Random.Range(-10, 10), Random.Range(minYPosition, maxYPosition));
             obj.transform.SetPositionAndRotation(randomPos, Quaternion.identity);
+
+            obj.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Kinematic;
         }
     }
 

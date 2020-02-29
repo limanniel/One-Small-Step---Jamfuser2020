@@ -19,33 +19,33 @@ public class ScriptPlayerController : MonoBehaviour
     void Start()
     {
         rigidbody2D = GetComponent<Rigidbody2D>();
-        rigidbody2D.isKinematic = true;
+        //rigidbody2D.isKinematic = true;
         netForce = new Vector2(0.0f, 0.0f);
     }
 
     // Update is called once per frame
     void Update()
     {
-        NetForceCalc();
+        //NetForceCalc();
 
-        rigidbody2D.velocity = netForce;
+        //rigidbody2D.velocity = netForce;
 
-        if (rigidbody2D.velocity.magnitude > fMaxSpeed)
-            rigidbody2D.velocity = rigidbody2D.velocity.normalized * fMaxSpeed;
+        //if (rigidbody2D.velocity.magnitude > fMaxSpeed)
+        //    rigidbody2D.velocity = rigidbody2D.velocity.normalized * fMaxSpeed;
 
     }
 
-    private void NetForceCalc()
-    {
-        float moveX = Input.GetAxis("Horizontal");
-        float moveY = Input.GetAxis("Vertical");
-        Vector2 movement = new Vector2(moveX * fSpeed, moveY * fSpeed);
-        Vector2 gravityForce = new Vector2(0.0f, fGravity);
-        Vector2 upForce = new Vector2(0.0f, -fGravity);
-        Vector2 jumpForce = new Vector2(0.0f, fJump);
+    //private void NetForceCalc()
+    //{
+    //    float moveX = Input.GetAxis("Horizontal");
+    //    float moveY = Input.GetAxis("Vertical");
+    //    Vector2 movement = new Vector2(moveX * fSpeed, moveY * fSpeed);
+    //    Vector2 gravityForce = new Vector2(0.0f, fGravity);
+    //    Vector2 upForce = new Vector2(0.0f, -fGravity);
+    //    Vector2 jumpForce = new Vector2(0.0f, fJump);
 
-        netForce = movement + jumpForce + gravityForce;
-    }
+    //    netForce = movement + jumpForce + gravityForce;
+    //}
 
     public void HandleCollision(PlayerCollisionHandler playerCollisionHandler)
     {
