@@ -5,12 +5,12 @@ using UnityEngine;
 public class ScriptPlayerController : MonoBehaviour
 {
     public float fSpeed;
-    public float fJump;
-    public float fGravity;
+    public float fMaxJump = 30.0f;
+    public float fJump = 15.0f;
     public float fMaxSpeed;
-    public float fUpForce;
+    public bool bIsJumping;
 
-    private Vector2 netForce;
+    public Vector2 jumpForce;
 
     [SerializeField]
     public Rigidbody2D rigidbody2D;
@@ -19,37 +19,46 @@ public class ScriptPlayerController : MonoBehaviour
     void Start()
     {
         rigidbody2D = GetComponent<Rigidbody2D>();
-        //rigidbody2D.isKinematic = true;
-        netForce = new Vector2(0.0f, 0.0f);
+        rigidbody2D.isKinematic = false;
+
+        fSpeed = 7.5f;
+        rigidbody2D.gravityScale = 10.0f;
+        fJump = 4.0f;
+        
     }
 
     // Update is called once per frame
     void Update()
     {
-        //NetForceCalc();
+        float moveX = Input.GetAxis("Horizontal");
+        float moveY = Input.GetAxis("Vertical");
+        
 
-        //rigidbody2D.velocity = netForce;
+        if (Input.GetKeyDown(KeyCode.W) && !bIsJumping)
+        {
+            Jump();
+        }
 
-        //if (rigidbody2D.velocity.magnitude > fMaxSpeed)
-        //    rigidbody2D.velocity = rigidbody2D.velocity.normalized * fMaxSpeed;
+        Vector2 movement = new Vector2(moveX, 0.0f);
+
+        rigidbody2D.velocity = (movement * fSpeed) + jumpForce;
+
+        if (jumpForce.y != 0)
+            jumpForce.y -= Time.deltaTime;
 
     }
-
-    //private void NetForceCalc()
-    //{
-    //    float moveX = Input.GetAxis("Horizontal");
-    //    float moveY = Input.GetAxis("Vertical");
-    //    Vector2 movement = new Vector2(moveX * fSpeed, moveY * fSpeed);
-    //    Vector2 gravityForce = new Vector2(0.0f, fGravity);
-    //    Vector2 upForce = new Vector2(0.0f, -fGravity);
-    //    Vector2 jumpForce = new Vector2(0.0f, fJump);
-
-    //    netForce = movement + jumpForce + gravityForce;
-    //}
 
     public void HandleCollision(PlayerCollisionHandler playerCollisionHandler)
     {
         Debug.Log("You're colliding!");
+        bIsJumping = false;
+        jumpForce.y = 0.0f;
+    }
+
+    private void Jump()
+    {
+        bIsJumping = true;
+        jumpForce.y = fJump;
         
     }
 }
