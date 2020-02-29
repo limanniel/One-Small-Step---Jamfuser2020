@@ -10,7 +10,6 @@ public class CameraController : MonoBehaviour
 
     private void Start()
     {
-        offset.transform.
     }
 
 }
