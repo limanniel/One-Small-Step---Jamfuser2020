@@ -1,4 +1,4 @@
-﻿using System.Collections;
+﻿  using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -25,12 +25,17 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     private bool isTouchingWall;
     private bool isWallSliding;
+    private AudioManager audioMGR;
+    
 
     // Start is called before the first frame update
     void Start()
     {
         rigidBody = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
+        audioMGR = FindObjectOfType<AudioManager>();
+        
+        if (!audioMGR) { Debug.Log("No audio manager"); }
 
         //Initialise Vars   Leave as comments to know which values we are using
         //moveSpeed = 5.0f;
@@ -128,6 +133,8 @@ public class PlayerController : MonoBehaviour
         if (!isWallSliding)
         {
             rigidBody.AddForce(new Vector2(0.0f, jumpForce), ForceMode2D.Impulse);
+            FindObjectOfType<AudioManager>().Play("Jump");
+            audioMGR.Play("Jump", 0.5f, 1.1f);
         }
         else
         {
@@ -137,8 +144,8 @@ public class PlayerController : MonoBehaviour
             if (facingRight) abs = 1.0f;
             if (!facingRight) abs = -1.0f;
             rigidBody.AddForce(new Vector2(abs * wallPushForce, jumpForce), ForceMode2D.Impulse);
+            audioMGR.Play("Jump", 0.5f, 1.0f);
         }
-            
     }
 
     private void UpdateWalkingAnimation(float xInput)
