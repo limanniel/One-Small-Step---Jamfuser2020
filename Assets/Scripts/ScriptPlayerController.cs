@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -17,8 +17,9 @@ public class ScriptPlayerController : MonoBehaviour
     public bool bIsJumping;
     public LayerMask ground;
 
-    [SerializeField]
-    public Rigidbody2D rigidbody2D;
+    private new Rigidbody2D rigidbody2D;
+    private new Animator animation;
+    private bool facingLeft;
 
     private Vector2 movement;
 
@@ -37,7 +38,9 @@ public class ScriptPlayerController : MonoBehaviour
     void Start()
     {
         rigidbody2D = GetComponent<Rigidbody2D>();
+        animation = GetComponent<Animator>();
         rigidbody2D.isKinematic = false;
+        facingLeft = false;
 
         //fFallMultiplier = 2.5f;
         //fLowJumpMultiplier = 2.0f;
@@ -58,18 +61,29 @@ public class ScriptPlayerController : MonoBehaviour
         
         rigidbody2D.AddForce(movement * fSpeed * 5);
         rigidbody2D.velocity = Vector2.ClampMagnitude(rigidbody2D.velocity, fMaxSpeed);
+        animation.SetFloat("Speed", Mathf.Abs(rigidbody2D.velocity.x));
 
         if (Input.GetButtonDown("Jump") && IsGrounded())
         {
             bIsJumping = true;
         }
-
+        
         if (wallCheckHit && rigidbody2D.velocity.y <= 0 && !IsGrounded())
         {
             bWallSliding = true;
         }
         else
             bWallSliding = false;
+
+        if (moveX < 0 && !facingLeft)
+        {
+            reverseImage();
+        }
+        else if (moveX > 0 && facingLeft)
+        {
+            reverseImage();
+        }
+
     }
 
     private void FixedUpdate()
@@ -132,10 +146,16 @@ public class ScriptPlayerController : MonoBehaviour
             return true;
         return false;
     }
-
+    
     private void OnDrawGizmos()
     {
         Gizmos.DrawLine(wallRaycast.position, new Vector3(wallRaycast.position.x + fWallRaycastDistance, wallRaycast.position.y, wallRaycast.position.z));
         //Gizmos.DrawLine(wallRaycast.position, wallRaycast.position + fWallRaycastDistance);
+    private void reverseImage()
+    {
+        facingLeft = !facingLeft;
+        Vector3 scale = rigidbody2D.transform.localScale;
+        scale.x *= -1;
+        rigidbody2D.transform.localScale = scale;
     }
 }
