@@ -23,16 +23,25 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
-        // Check to not go faster than max speed (moveSpeed)
-        if (rigidBody.velocity.x > moveSpeed)
+        if (rigidBody)
         {
-            rigidBody.velocity = new Vector2(moveSpeed, rigidBody.velocity.y);
-            return;
-        }
-        else if (rigidBody.velocity.x < -moveSpeed)
-        {
-            rigidBody.velocity = new Vector2(-moveSpeed, rigidBody.velocity.y);
-            return;
+            // Jump if "Jump" button is pressed and character is on the ground
+            if (Input.GetButtonDown("Jump") && isGrounded)
+            {
+                Jump();
+            }
+
+            // Check to not go faster than max speed (moveSpeed)
+            if (rigidBody.velocity.x > moveSpeed)
+            {
+                rigidBody.velocity = new Vector2(moveSpeed, rigidBody.velocity.y);
+                return;
+            }
+            else if (rigidBody.velocity.x < -moveSpeed)
+            {
+                rigidBody.velocity = new Vector2(-moveSpeed, rigidBody.velocity.y);
+                return;
+            }
         }
     }
 
@@ -44,12 +53,6 @@ public class PlayerController : MonoBehaviour
         {
             // Update vertical movement (X axis)
             HorizontalMovement();
-
-            // Jump if "Jump" button is pressed and character is on the ground
-            if (Input.GetButtonDown("Jump") && isGrounded)
-            {
-                Jump();
-            }
         }
     }
 

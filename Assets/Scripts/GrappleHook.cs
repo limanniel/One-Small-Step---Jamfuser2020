@@ -4,18 +4,19 @@ using UnityEngine;
 
 public class GrappleHook : MonoBehaviour
 {
-    
-    DistanceJoint2D joint;
-    Vector3 targetPos;
-    RaycastHit2D hit;
     public float distance = 20.0f;
     public LayerMask mask;
     public LineRenderer rope;
-    float ropePull = 4.0f;
-    public GameObject player;
+
+    private Vector3 targetPos;
+    private RaycastHit2D hit;
+    private float ropePull = 4.0f;
+    private DistanceJoint2D joint;
+    private Rigidbody2D rigidBody;
 
     void Start()
     {
+        rigidBody = GetComponent<Rigidbody2D>();
         joint = GetComponent<DistanceJoint2D>();
         joint.enabled = false;
         rope.enabled = false;
@@ -35,6 +36,7 @@ public class GrappleHook : MonoBehaviour
 
         if (Input.GetMouseButtonDown(0))
         {
+            Debug.Log("PRessed!");
             //this.GetComponent<ScriptPlayerController>().GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Dynamic;
             targetPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             targetPos.z = 0;
@@ -55,7 +57,7 @@ public class GrappleHook : MonoBehaviour
                 rope.SetPosition(0, transform.position);
                 rope.SetPosition(1, hit.point);
 
-                player.GetComponent<Rigidbody2D>().velocity = new Vector2((targetPos.x - transform.position.x), (targetPos.y - transform.position.y) *2);
+                rigidBody.velocity = new Vector2((targetPos.x - transform.position.x), (targetPos.y - transform.position.y) *2);
             }
         }
         if (Input.GetMouseButton(0))
