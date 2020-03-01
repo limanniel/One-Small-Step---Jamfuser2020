@@ -1,4 +1,5 @@
-﻿using System.Collections;
+using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -13,7 +14,7 @@ public class ScriptPlayerController : MonoBehaviour
     public float fMaxJump;
 
     public float fJumpTimer;
-    private bool bIsJumping;
+    public bool bIsJumping;
     public LayerMask ground;
 
     private new Rigidbody2D rigidbody2D;
@@ -21,6 +22,17 @@ public class ScriptPlayerController : MonoBehaviour
     private bool facingLeft;
 
     private Vector2 movement;
+
+    private int iFacingDir = 1;
+    public Vector2 wallJumpDir;
+    public Vector2 wallFacingDir;
+    public float fWallJumpForce;
+    public float fWallFacingForce;
+    public Transform wallRaycast;
+    public float fWallRaycastDistance;
+    private RaycastHit2D wallCheckHit;
+    public bool bWallSliding;
+    private float fMaxWallSlideVelocity;
 
     // Start is called before the first frame update
     void Start()
@@ -36,6 +48,9 @@ public class ScriptPlayerController : MonoBehaviour
         fMaxSpeed = 7.59f;
         fMaxJump = 1.69f;
         rigidbody2D.gravityScale = 5.0f;
+        wallJumpDir.Normalize();
+        wallFacingDir.Normalize();
+        fMaxWallSlideVelocity = 0.0f;
     }
 
     // Update is called once per frame
@@ -49,7 +64,16 @@ public class ScriptPlayerController : MonoBehaviour
         animation.SetFloat("Speed", Mathf.Abs(rigidbody2D.velocity.x));
 
         if (Input.GetButtonDown("Jump") && IsGrounded())
+        {
             bIsJumping = true;
+        }
+        
+        if (wallCheckHit && rigidbody2D.velocity.y <= 0 && !IsGrounded())
+        {
+            bWallSliding = true;
+        }
+        else
+            bWallSliding = false;
 
         if (moveX < 0 && !facingLeft)
         {
@@ -66,17 +90,43 @@ public class ScriptPlayerController : MonoBehaviour
     {
         if (bIsJumping && Input.GetButton("Jump"))
         {
-            if (fJumpTimer < fMaxJump)
-            {
-                fJumpTimer += Time.deltaTime * 8;
-                if (fJumpTimer > 0.6)
-                    rigidbody2D.velocity = new Vector2(rigidbody2D.velocity.x, fJumpTimer * 5.0f);
-            }
+            Jump();
         }
         else
         {
             bIsJumping = false;
             fJumpTimer = 0.0f;
+        }
+
+        wallCheckHit = Physics2D.Raycast(wallRaycast.position, wallRaycast.right, fWallRaycastDistance, ground);
+
+        if (wallCheckHit)
+        {
+            Debug.Log("Wall Touch");
+        }
+
+        if (bWallSliding)
+        {
+            bIsJumping = true;
+            if (rigidbody2D.velocity.y < -fMaxWallSlideVelocity)
+            {
+                rigidbody2D.velocity = new Vector2(rigidbody2D.velocity.x, -fMaxWallSlideVelocity);
+            }
+            
+        }
+    }
+
+    private void Jump()
+    {
+        if (fJumpTimer < fMaxJump)
+        {
+            fJumpTimer += Time.deltaTime * 8;
+            if (fJumpTimer > 0.6)
+
+                if (!bWallSliding)
+                  rigidbody2D.velocity = new Vector2(rigidbody2D.velocity.x, fJumpTimer * 5.0f);
+            else
+                  rigidbody2D.velocity = new Vector2(-(rigidbody2D.velocity.x + (fSpeed * 3)), fJumpTimer * 5.0f);
         }
     }
 
@@ -96,7 +146,11 @@ public class ScriptPlayerController : MonoBehaviour
             return true;
         return false;
     }
-
+    
+    private void OnDrawGizmos()
+    {
+        Gizmos.DrawLine(wallRaycast.position, new Vector3(wallRaycast.position.x + fWallRaycastDistance, wallRaycast.position.y, wallRaycast.position.z));
+        //Gizmos.DrawLine(wallRaycast.position, wallRaycast.position + fWallRaycastDistance);
     private void reverseImage()
     {
         facingLeft = !facingLeft;
