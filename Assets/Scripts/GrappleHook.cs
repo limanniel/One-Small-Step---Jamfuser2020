@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class GrappleHook : MonoBehaviour
 {
@@ -26,18 +24,12 @@ public class GrappleHook : MonoBehaviour
     void Update()
     {
         if (joint.distance > 2.0f)
-            joint.distance -= Time.deltaTime * ropePull;
-            
-        else
         {
-            //rope.enabled = false;
-            //joint.enabled = false;
+            joint.distance -= Time.deltaTime * ropePull;
         }
 
         if (Input.GetMouseButtonDown(0))
         {
-            Debug.Log("PRessed!");
-            //this.GetComponent<ScriptPlayerController>().GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Dynamic;
             targetPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             targetPos.z = 0;
 
@@ -67,7 +59,6 @@ public class GrappleHook : MonoBehaviour
 
         if (Input.GetMouseButtonUp(0))
         {
-            //this.GetComponent<ScriptPlayerController>().GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Kinematic;
             joint.enabled = false;
             rope.enabled = false;
         }

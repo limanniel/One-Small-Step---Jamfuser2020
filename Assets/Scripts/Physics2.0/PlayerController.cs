@@ -13,12 +13,14 @@ public class PlayerController : MonoBehaviour
 
     // Private vars
     private Rigidbody2D rigidBody;
+    private Animator animator;
     private bool facingRight = true;
 
     // Start is called before the first frame update
     void Start()
     {
         rigidBody = GetComponent<Rigidbody2D>();
+        animator = GetComponent<Animator>();
     }
 
     private void Update()
@@ -63,6 +65,21 @@ public class PlayerController : MonoBehaviour
         force.x = xInput * moveSpeed;
 
         rigidBody.AddForce(force);
+
+        // Update Spritesheet
+        animator.SetFloat("Speed", Mathf.Abs(rigidBody.velocity.x));
+
+
+        Debug.Log(Mathf.Abs(rigidBody.velocity.x));
+        // Flip Spritesheet accordingly
+        if (xInput < 0 && facingRight)
+        {
+            Flip();
+        }
+        else if (xInput > 0 && !facingRight)
+        {
+            Flip();
+        }
     }
 
     private void Jump()
@@ -74,8 +91,8 @@ public class PlayerController : MonoBehaviour
     private void Flip()
     {
         facingRight = !facingRight;
-        Vector3 scale = transform.localScale;
+        Vector3 scale = rigidBody.transform.localScale;
         scale.x *= -1;
-        transform.localScale = scale;
+        rigidBody.transform.localScale = scale;
     }
 }
