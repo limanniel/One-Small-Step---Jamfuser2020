@@ -10,7 +10,7 @@ public class ScriptPlayerController : MonoBehaviour
 
     [Range(0, 15)]
     public float fMaxSpeed;
-  
+
     public float fMaxJump;
 
     public float fJumpTimer;
@@ -25,7 +25,6 @@ public class ScriptPlayerController : MonoBehaviour
 
     private Vector2 movement;
 
-    private int iFacingDir = 1;
     public Vector2 wallJumpDir;
     public Vector2 wallFacingDir;
     public float fWallJumpForce;
@@ -62,18 +61,17 @@ public class ScriptPlayerController : MonoBehaviour
     {
         float moveX = Input.GetAxis("Horizontal");
         movement = new Vector2(moveX, 0.0f);
-        
-       if (!bIsInAir) rigidbody2D.AddForce(movement * fSpeed * 5);
+
+        if (!bIsInAir) rigidbody2D.AddForce(movement * fSpeed * 5);
         rigidbody2D.velocity = Vector2.ClampMagnitude(rigidbody2D.velocity, fMaxSpeed);
         animation.SetFloat("Speed", Mathf.Abs(rigidbody2D.velocity.x));
 
         if (Input.GetButtonDown("Jump") && IsGrounded())
         {
             bIsJumping = true;
-            StartCoroutine(cameraShake.Shake(0.35f, 0.05f));
+            StartCoroutine(cameraShake.Shake(0.6f, 0.015f));
         }
-        }
-        
+
         if (wallCheckHit && rigidbody2D.velocity.y <= 0 && !IsGrounded())
         {
             bWallSliding = true;
@@ -135,13 +133,13 @@ public class ScriptPlayerController : MonoBehaviour
                     bIsInAir = true;
                     rigidbody2D.velocity = new Vector2(rigidbody2D.velocity.x, fJumpTimer * 5.0f);
                 }
-                  
-            else
+
+                else
                 {
                     rigidbody2D.velocity = new Vector2(-150.0f + (fSpeed * 3), fJumpTimer * 5.0f);
                     bIsInAir = true;
                     reverseImage();
-                }    
+                }
         }
     }
 
