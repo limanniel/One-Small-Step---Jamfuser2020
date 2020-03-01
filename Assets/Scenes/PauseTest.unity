@@ -496,7 +496,7 @@ GameObject:
   - component: {fileID: 193925241}
   - component: {fileID: 193925240}
   - component: {fileID: 193925243}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: foreground
   m_TagString: Ground
   m_Icon: {fileID: 0}
@@ -17425,11 +17425,6 @@ PrefabInstance:
       propertyPath: mask.m_Bits
       value: 1591
       objectReference: {fileID: 0}
-    - target: {fileID: 6072410778859794153, guid: c740a2f5d9f560347a75a3b0c86b2c64,
-        type: 3}
-      propertyPath: distance
-      value: 30
-      objectReference: {fileID: 0}
     - target: {fileID: 6072410778859794156, guid: c740a2f5d9f560347a75a3b0c86b2c64,
         type: 3}
       propertyPath: m_Constraints
@@ -17458,27 +17453,22 @@ PrefabInstance:
     - target: {fileID: 6072410778859794152, guid: c740a2f5d9f560347a75a3b0c86b2c64,
         type: 3}
       propertyPath: m_Distance
-      value: 0.005
+      value: 2.9911215
       objectReference: {fileID: 0}
     - target: {fileID: 6072410778859794152, guid: c740a2f5d9f560347a75a3b0c86b2c64,
         type: 3}
-      propertyPath: m_ConnectedAnchor.x
-      value: -10.635265
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6072410778859794152, guid: c740a2f5d9f560347a75a3b0c86b2c64,
         type: 3}
       propertyPath: m_ConnectedAnchor.y
-      value: -0.325
+      value: -0.98695695
       objectReference: {fileID: 0}
     - target: {fileID: 6072410778859794152, guid: c740a2f5d9f560347a75a3b0c86b2c64,
         type: 3}
-      propertyPath: m_AutoConfigureDistance
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6072410778859794152, guid: c740a2f5d9f560347a75a3b0c86b2c64,
-        type: 3}
-      propertyPath: m_AutoConfigureConnectedAnchor
-      value: 1
+      propertyPath: m_ConnectedAnchor.x
+      value: -7.7183113
       objectReference: {fileID: 0}
     - target: {fileID: 6072410778745849231, guid: c740a2f5d9f560347a75a3b0c86b2c64,
         type: 3}
@@ -17727,11 +17717,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: 2nd Hook
-      objectReference: {fileID: 0}
-    - target: {fileID: 3197938248552593756, guid: b4034abb6597d124cb90dbc9b85388a6,
-        type: 3}
-      propertyPath: m_Layer
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3197938248552593756, guid: b4034abb6597d124cb90dbc9b85388a6,
         type: 3}
@@ -45770,11 +45755,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3197938248552593756, guid: b4034abb6597d124cb90dbc9b85388a6,
         type: 3}
-      propertyPath: m_Layer
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3197938248552593756, guid: b4034abb6597d124cb90dbc9b85388a6,
-        type: 3}
       propertyPath: m_TagString
       value: Hooker
       objectReference: {fileID: 0}
@@ -46376,11 +46356,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: 4th Hook
-      objectReference: {fileID: 0}
-    - target: {fileID: 3197938248552593756, guid: b4034abb6597d124cb90dbc9b85388a6,
-        type: 3}
-      propertyPath: m_Layer
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3197938248552593756, guid: b4034abb6597d124cb90dbc9b85388a6,
         type: 3}
@@ -47090,7 +47065,7 @@ GameObject:
   - component: {fileID: 1956469480}
   - component: {fileID: 1956469479}
   - component: {fileID: 1956469478}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: DeathMap
   m_TagString: GonDie
   m_Icon: {fileID: 0}
@@ -47838,20 +47813,15 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Hooker
       objectReference: {fileID: 0}
-    - target: {fileID: 3197938248552593756, guid: b4034abb6597d124cb90dbc9b85388a6,
-        type: 3}
-      propertyPath: m_Layer
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 3197938248552593754, guid: b4034abb6597d124cb90dbc9b85388a6,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -7.811
+      value: -7.732
       objectReference: {fileID: 0}
     - target: {fileID: 3197938248552593754, guid: b4034abb6597d124cb90dbc9b85388a6,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.955
+      value: -0.96
       objectReference: {fileID: 0}
     - target: {fileID: 3197938248552593754, guid: b4034abb6597d124cb90dbc9b85388a6,
         type: 3}
