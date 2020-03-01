@@ -8,6 +8,7 @@ public class DeathChecker : MonoBehaviour
 {
     [SerializeField]
     public GameObject[] DeathTextCanvas;
+    public ParticleSystem particleEffects;
 
     enum CHARACTERDEATH
     {
@@ -21,7 +22,7 @@ public class DeathChecker : MonoBehaviour
 
     private void Start()
     {
-       
+        particleEffects.Pause();
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -29,6 +30,8 @@ public class DeathChecker : MonoBehaviour
         if (collision.gameObject.tag == "GonDie")
         {
             characterDeath = CHARACTERDEATH.ACIDLASER;
+            particleEffects.transform.position = transform.position;
+            particleEffects.Play();
         }
     }
 
