@@ -23,9 +23,16 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetButtonDown("Jump") && isGrounded)
+        // Check to not go faster than max speed (moveSpeed)
+        if (rigidBody.velocity.x > moveSpeed)
         {
-            rigidBody.AddForce(new Vector2(0.0f, jumpForce), ForceMode2D.Impulse);
+            rigidBody.velocity = new Vector2(moveSpeed, rigidBody.velocity.y);
+            return;
+        }
+        else if (rigidBody.velocity.x < -moveSpeed)
+        {
+            rigidBody.velocity = new Vector2(-moveSpeed, rigidBody.velocity.y);
+            return;
         }
     }
 
@@ -35,7 +42,14 @@ public class PlayerController : MonoBehaviour
         // Check if rigidbody is assigned/found
         if (rigidBody)
         {
+            // Update vertical movement (X axis)
             HorizontalMovement();
+
+            // Jump if "Jump" button is pressed and character is on the ground
+            if (Input.GetButtonDown("Jump") && isGrounded)
+            {
+                Jump();
+            }
         }
     }
 
@@ -45,14 +59,12 @@ public class PlayerController : MonoBehaviour
         Vector2 force = new Vector2(0.0f, 0.0f);
         force.x = xInput * moveSpeed;
 
-        // Check to not go faster than max speed (moveSpeed)
-        if (rigidBody.velocity.x > moveSpeed)
-        {
-            rigidBody.velocity = new Vector2(moveSpeed, rigidBody.velocity.y);
-            return;
-        }
-
         rigidBody.AddForce(force);
+    }
+
+    private void Jump()
+    {
+        rigidBody.AddForce(new Vector2(0.0f, jumpForce), ForceMode2D.Impulse);
     }
 
     // Flip Facing Direction
