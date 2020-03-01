@@ -44,6 +44,8 @@ public class PlayerController : MonoBehaviour
                 rigidBody.velocity = new Vector2(-moveSpeed, rigidBody.velocity.y);
                 return;
             }
+
+            Debug.Log(rigidBody.velocity);
         }
     }
 
