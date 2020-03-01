@@ -9,15 +9,18 @@ public class AudioManager : MonoBehaviour
 {
     public Sound[] sounds;
 
+
+
     private void Awake()
     {
-        foreach(Sound audio in sounds)
+        foreach (Sound audio in sounds)
         {
             audio.source = gameObject.AddComponent<AudioSource>();
             audio.source.clip = audio.clip;
 
             audio.source.volume = audio.volume;
             audio.source.pitch = audio.pitch;
+            audio.source.loop = audio.loop;
         }
     }
 
@@ -33,15 +36,19 @@ public class AudioManager : MonoBehaviour
         return clipToPlay;
     }
 
-    public void Play(string name, float volume, float pitch)
+    public void Play(string name, float volume, float pitch, bool loop = false)
     {
         Sound clip = Find(name);
-        if (clip != null)
-        {
-            clip.source.volume = volume;
-            clip.source.pitch = pitch;
-            clip.source.Play();
-        } 
-        
+        clip.source.volume = volume;
+        clip.source.pitch = pitch;
+        clip.source.Play();
+    }
+
+    public bool IsPlaying(string name)
+    {
+        if (Find(name).source.isPlaying)
+            return true;
+        else
+            return false;
     }
 }

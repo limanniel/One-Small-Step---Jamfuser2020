@@ -11,6 +11,7 @@ public class GrappleHook : MonoBehaviour
     private float ropePull = 4.0f;
     private DistanceJoint2D joint;
     private Rigidbody2D rigidBody;
+    private AudioManager audioMGR;
 
     void Start()
     {
@@ -18,6 +19,9 @@ public class GrappleHook : MonoBehaviour
         joint = GetComponent<DistanceJoint2D>();
         joint.enabled = false;
         rope.enabled = false;
+        audioMGR = FindObjectOfType<AudioManager>();
+
+        if (!audioMGR) { Debug.Log("No audio manager"); }
     }
 
     // Update is called once per frame

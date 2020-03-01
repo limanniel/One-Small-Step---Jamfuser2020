@@ -26,6 +26,7 @@ public class PlayerController : MonoBehaviour
     private bool isTouchingWall;
     private bool isWallSliding;
     private AudioManager audioMGR;
+    private bool isExecuting;
     
 
     // Start is called before the first frame update
@@ -43,6 +44,7 @@ public class PlayerController : MonoBehaviour
         wallCheckDistance = 0.15f;
         wallSlideSpeed = 0.2f;
         groundCheckRadius = 0.06f;
+        isExecuting = false;
     }
 
     private void Update()
@@ -85,6 +87,11 @@ public class PlayerController : MonoBehaviour
             {
                 if (rigidBody.velocity.y < -wallSlideSpeed)
                 {
+                    if (!audioMGR.IsPlaying("WallSlide"))
+                    {
+                        Debug.Log(audioMGR.IsPlaying("WallSlide"));
+                        audioMGR.Play("WallSlide", 0.1f, 1.0f, false);
+                    }
                     rigidBody.velocity = new Vector2(rigidBody.velocity.x, -wallSlideSpeed);
                 }
             }
@@ -144,7 +151,7 @@ public class PlayerController : MonoBehaviour
             if (facingRight) abs = 1.0f;
             if (!facingRight) abs = -1.0f;
             rigidBody.AddForce(new Vector2(abs * wallPushForce, jumpForce), ForceMode2D.Impulse);
-            audioMGR.Play("Jump", 0.5f, 1.0f);
+            audioMGR.Play("WallJump", 0.5f, 1.0f);
         }
     }
 

@@ -359,6 +359,54 @@ MonoBehaviour:
     pitch: 0
     loop: 0
     source: {fileID: 0}
+  - name: Black Hole
+    clip: {fileID: 8300000, guid: 591c7d4c2e726bd4f8149778d87bbb1e, type: 3}
+    volume: 0.427
+    pitch: 0
+    loop: 0
+    source: {fileID: 0}
+  - name: Player Death
+    clip: {fileID: 0}
+    volume: 0.427
+    pitch: 0
+    loop: 0
+    source: {fileID: 0}
+  - name: GrapplingHookStart
+    clip: {fileID: 0}
+    volume: 0.427
+    pitch: 0
+    loop: 0
+    source: {fileID: 0}
+  - name: GrapplingHookGrapple
+    clip: {fileID: 8300000, guid: 042908ce561a0bc4cad026ffd97bd14d, type: 3}
+    volume: 0.427
+    pitch: 0
+    loop: 0
+    source: {fileID: 0}
+  - name: GrapplingHookRetract
+    clip: {fileID: 8300000, guid: 4bd7f5927927f814987b31a3fc17f936, type: 3}
+    volume: 0.427
+    pitch: 0
+    loop: 0
+    source: {fileID: 0}
+  - name: GrapplingHookPull
+    clip: {fileID: 8300000, guid: 94acbda911f4c4f49828c04883b4f80b, type: 3}
+    volume: 0.427
+    pitch: 0
+    loop: 0
+    source: {fileID: 0}
+  - name: WallSlide
+    clip: {fileID: 8300000, guid: db0dee2a91f07cc428de40a681a3d8e1, type: 3}
+    volume: 0.427
+    pitch: 0
+    loop: 0
+    source: {fileID: 0}
+  - name: WallJump
+    clip: {fileID: 8300000, guid: acb48fae9784bfd4099da2da6dc5d914, type: 3}
+    volume: 0.427
+    pitch: 0
+    loop: 0
+    source: {fileID: 0}
 --- !u!4 &101588684
 Transform:
   m_ObjectHideFlags: 0
