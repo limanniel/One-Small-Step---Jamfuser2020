@@ -44,9 +44,6 @@ public class PlayerController : MonoBehaviour
                 rigidBody.velocity = new Vector2(-moveSpeed, rigidBody.velocity.y);
                 return;
             }
-
-            //Debug.Log(rigidBody.velocity);
-            Debug.Log(isGrounded);
         }
     }
 
@@ -101,4 +98,6 @@ public class PlayerController : MonoBehaviour
         scale.x *= -1;
         rigidBody.transform.localScale = scale;
     }
+
+   
 }

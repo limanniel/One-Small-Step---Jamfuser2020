@@ -14,6 +14,7 @@ public class GrappleHook : MonoBehaviour
 
     void Start()
     {
+        CircleCollider2D cc2d = GetComponent<CircleCollider2D>();
         rigidBody = GetComponent<Rigidbody2D>();
         joint = GetComponent<DistanceJoint2D>();
         joint.enabled = false;
@@ -61,6 +62,42 @@ public class GrappleHook : MonoBehaviour
         {
             joint.enabled = false;
             rope.enabled = false;
+        }
+    }
+
+    //
+    /// 
+    ////  BRONK GRAPPLING FOR WHEN PLAYER PRESSES SPACE WITHIN VICINITY */FIX/*
+    ///
+    //
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        
+            Collider2D collider = collision.GetComponent<Collider2D>();
+            if (collider.tag == "Hooker")
+            {
+                GameObject gobject = collision.gameObject;
+                Debug.Log(gobject.name);
+
+                if (Input.GetButtonDown("Jump"))
+                {
+                    //if hit and the object is a rigid body.
+                    if (collider != null && collider.gameObject.GetComponent<Rigidbody2D>() != null)
+                    {
+                        joint.enabled = true;
+                        joint.connectedBody = collider.gameObject.GetComponent<Rigidbody2D>();
+
+                        joint.distance = Vector2.Distance(transform.position, gobject.transform.position);
+
+                        // Set rope position
+                        rope.enabled = true;
+                        rope.SetPosition(0, transform.position);
+                        rope.SetPosition(1, gobject.transform.position);
+
+                        rigidBody.velocity = new Vector2((targetPos.x - transform.position.x), (targetPos.y - transform.position.y) * 2);
+                    }
+                }
         }
     }
 }
