@@ -495,6 +495,7 @@ GameObject:
   - component: {fileID: 193925242}
   - component: {fileID: 193925241}
   - component: {fileID: 193925240}
+  - component: {fileID: 193925243}
   m_Layer: 9
   m_Name: foreground
   m_TagString: Ground
@@ -17326,6 +17327,27 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
+--- !u!50 &193925243
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 193925238}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 7
 --- !u!1001 &387483699
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -17346,7 +17368,7 @@ PrefabInstance:
     - target: {fileID: 6072410778859794157, guid: c740a2f5d9f560347a75a3b0c86b2c64,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.177
+      value: -0.325
       objectReference: {fileID: 0}
     - target: {fileID: 6072410778859794157, guid: c740a2f5d9f560347a75a3b0c86b2c64,
         type: 3}
@@ -17398,17 +17420,63 @@ PrefabInstance:
       propertyPath: m_Constraints
       value: 4
       objectReference: {fileID: 0}
+    - target: {fileID: 6072410778859794156, guid: c740a2f5d9f560347a75a3b0c86b2c64,
+        type: 3}
+      propertyPath: m_BodyType
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6072410778859794155, guid: c740a2f5d9f560347a75a3b0c86b2c64,
+        type: 3}
+      propertyPath: m_IsTrigger
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6072410778859794154, guid: c740a2f5d9f560347a75a3b0c86b2c64,
+        type: 3}
+      propertyPath: moveSpeed
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 6072410778859794152, guid: c740a2f5d9f560347a75a3b0c86b2c64,
+        type: 3}
+      propertyPath: m_Distance
+      value: 10.636738
+      objectReference: {fileID: 0}
     - target: {fileID: 6072410778859794153, guid: c740a2f5d9f560347a75a3b0c86b2c64,
         type: 3}
       propertyPath: rope
       value: 
       objectReference: {fileID: 1918621755}
+    - target: {fileID: 6072410778745849231, guid: c740a2f5d9f560347a75a3b0c86b2c64,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1.044703
+      objectReference: {fileID: 0}
+    - target: {fileID: 6072410778745849231, guid: c740a2f5d9f560347a75a3b0c86b2c64,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.017
+      objectReference: {fileID: 0}
+    - target: {fileID: 6072410778745849230, guid: c740a2f5d9f560347a75a3b0c86b2c64,
+        type: 3}
+      propertyPath: m_IsTrigger
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6072410778745849230, guid: c740a2f5d9f560347a75a3b0c86b2c64,
+        type: 3}
+      propertyPath: m_EdgeRadius
+      value: 0.03
+      objectReference: {fileID: 0}
     - target: {fileID: 6072410779661114850, guid: c740a2f5d9f560347a75a3b0c86b2c64,
         type: 3}
       propertyPath: m_Constraints
       value: 4
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 6072410779063963159, guid: c740a2f5d9f560347a75a3b0c86b2c64,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 6072410778859794155, guid: c740a2f5d9f560347a75a3b0c86b2c64, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: c740a2f5d9f560347a75a3b0c86b2c64, type: 3}
 --- !u!1 &409671637
 GameObject:
@@ -46122,6 +46190,28 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &1470995181 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6072410778859794159, guid: c740a2f5d9f560347a75a3b0c86b2c64,
+    type: 3}
+  m_PrefabInstance: {fileID: 387483699}
+  m_PrefabAsset: {fileID: 0}
+--- !u!70 &1470995186
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1470995181}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0.00059455633}
+  m_Size: {x: 0.16, y: 0.26881087}
+  m_Direction: 0
 --- !u!1 &1508048741
 GameObject:
   m_ObjectHideFlags: 0

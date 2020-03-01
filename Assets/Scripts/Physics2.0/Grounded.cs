@@ -19,6 +19,13 @@ public class Grounded : MonoBehaviour
         }
     }
 
+    private void OnCollisionStay2D(Collision2D collision)
+    {
+        if (collision.collider.tag == "Ground")
+        {
+            player.GetComponent<PlayerController>().isGrounded = true;
+        }
+    }
 
     private void OnCollisionExit2D(Collision2D collision)
     {
