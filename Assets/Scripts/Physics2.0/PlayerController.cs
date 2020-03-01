@@ -66,12 +66,20 @@ public class PlayerController : MonoBehaviour
 
         rigidBody.AddForce(force);
 
+        UpdateWalkingAnimation(xInput);
+    }
+
+    private void Jump()
+    {
+        rigidBody.AddForce(new Vector2(0.0f, jumpForce), ForceMode2D.Impulse);
+    }
+
+    private void UpdateWalkingAnimation(float xInput)
+    {
         // Update Spritesheet
         animator.SetFloat("Speed", Mathf.Abs(rigidBody.velocity.x));
 
-
-        Debug.Log(Mathf.Abs(rigidBody.velocity.x));
-        // Flip Spritesheet accordingly
+        // Flip Sprite accordingly to facing direction
         if (xInput < 0 && facingRight)
         {
             Flip();
@@ -80,11 +88,6 @@ public class PlayerController : MonoBehaviour
         {
             Flip();
         }
-    }
-
-    private void Jump()
-    {
-        rigidBody.AddForce(new Vector2(0.0f, jumpForce), ForceMode2D.Impulse);
     }
 
     // Flip Facing Direction
