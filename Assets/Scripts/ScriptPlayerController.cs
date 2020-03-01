@@ -33,6 +33,7 @@ public class ScriptPlayerController : MonoBehaviour
     private RaycastHit2D wallCheckHit;
     public bool bWallSliding;
     private float fMaxWallSlideVelocity;
+    public bool bIsInAir;
 
     // Start is called before the first frame update
     void Start()
@@ -51,6 +52,7 @@ public class ScriptPlayerController : MonoBehaviour
         wallJumpDir.Normalize();
         wallFacingDir.Normalize();
         fMaxWallSlideVelocity = 0.0f;
+        bIsInAir = false;
     }
 
     // Update is called once per frame
@@ -59,7 +61,7 @@ public class ScriptPlayerController : MonoBehaviour
         float moveX = Input.GetAxis("Horizontal");
         movement = new Vector2(moveX, 0.0f);
         
-        rigidbody2D.AddForce(movement * fSpeed * 5);
+       if (!bIsInAir) rigidbody2D.AddForce(movement * fSpeed * 5);
         rigidbody2D.velocity = Vector2.ClampMagnitude(rigidbody2D.velocity, fMaxSpeed);
         animation.SetFloat("Speed", Mathf.Abs(rigidbody2D.velocity.x));
 
@@ -84,6 +86,8 @@ public class ScriptPlayerController : MonoBehaviour
             reverseImage();
         }
 
+        if (IsGrounded()) bIsInAir = false;
+
     }
 
     private void FixedUpdate()
@@ -102,7 +106,7 @@ public class ScriptPlayerController : MonoBehaviour
 
         if (wallCheckHit)
         {
-            Debug.Log("Wall Touch");
+            //Debug.Log("Wall Touch");
         }
 
         if (bWallSliding)
@@ -112,7 +116,6 @@ public class ScriptPlayerController : MonoBehaviour
             {
                 rigidbody2D.velocity = new Vector2(rigidbody2D.velocity.x, -fMaxWallSlideVelocity);
             }
-            
         }
     }
 
@@ -124,15 +127,23 @@ public class ScriptPlayerController : MonoBehaviour
             if (fJumpTimer > 0.6)
 
                 if (!bWallSliding)
-                  rigidbody2D.velocity = new Vector2(rigidbody2D.velocity.x, fJumpTimer * 5.0f);
+                {
+                    bIsInAir = true;
+                    rigidbody2D.velocity = new Vector2(rigidbody2D.velocity.x, fJumpTimer * 5.0f);
+                }
+                  
             else
-                  rigidbody2D.velocity = new Vector2(-(rigidbody2D.velocity.x + (fSpeed * 3)), fJumpTimer * 5.0f);
+                {
+                    rigidbody2D.velocity = new Vector2(-150.0f + (fSpeed * 3), fJumpTimer * 5.0f);
+                    bIsInAir = true;
+                    reverseImage();
+                }    
         }
     }
 
     public void HandleCollision(PlayerCollisionHandler playerCollisionHandler)
     {
-        Debug.Log("You're colliding!");
+        //Debug.Log("You're colliding!");
     }
 
     private bool IsGrounded()
@@ -146,13 +157,15 @@ public class ScriptPlayerController : MonoBehaviour
             return true;
         return false;
     }
-    
+
     private void OnDrawGizmos()
     {
-        Gizmos.DrawLine(wallRaycast.position, new Vector3(wallRaycast.position.x + fWallRaycastDistance, wallRaycast.position.y, wallRaycast.position.z));
+        Gizmos.DrawLine(wallRaycast.position, wallRaycast.right);
         //Gizmos.DrawLine(wallRaycast.position, wallRaycast.position + fWallRaycastDistance);
+    }
     private void reverseImage()
     {
+        Debug.Log("Rotate");
         facingLeft = !facingLeft;
         Vector3 scale = rigidbody2D.transform.localScale;
         scale.x *= -1;
