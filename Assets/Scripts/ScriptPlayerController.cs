@@ -2,12 +2,30 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class ScriptPlayerController : MonoBehaviour
 {
+    [SerializeField]
+    public GameObject DeathText1;
+
+    [SerializeField]
+    public GameObject DeathText2;
+
+    [SerializeField]
+    public GameObject DeathText3;
+
+    [SerializeField]
+    public GameObject DeathText4;
+
+    [SerializeField]
+    public GameObject DeathText5;
+
+    [SerializeField]
+    public GameObject DeathText6;
+
     [Range(0, 30f)]
     public float fSpeed;
-
     [Range(0, 15)]
     public float fMaxSpeed;
 
@@ -35,30 +53,41 @@ public class ScriptPlayerController : MonoBehaviour
     public bool bWallSliding;
     private float fMaxWallSlideVelocity;
     public bool bIsInAir;
+    enum CHARACTERDEATH
+    {
+        NOTDEAD = 0,
+        ACIDLASER,
+        KARS,
+        BLACKHOLE
+    }
+    CHARACTERDEATH characterDeath = CHARACTERDEATH.NOTDEAD;
 
+   
     // Start is called before the first frame update
     void Start()
     {
+        
         rigidbody2D = GetComponent<Rigidbody2D>();
         animation = GetComponent<Animator>();
         rigidbody2D.isKinematic = false;
         facingLeft = false;
-
         //fFallMultiplier = 2.5f;
         //fLowJumpMultiplier = 2.0f;
-        fSpeed = 15f;
-        fMaxSpeed = 7.59f;
-        fMaxJump = 1.69f;
-        rigidbody2D.gravityScale = 5.0f;
         wallJumpDir.Normalize();
         wallFacingDir.Normalize();
         fMaxWallSlideVelocity = 0.0f;
         bIsInAir = false;
+        fSpeed = 5f;
+        fMaxSpeed = 5f;
+        fMaxJump = 1.0f;
+        rigidbody2D.gravityScale = 5.0f;
     }
 
     // Update is called once per frame
     void Update()
     {
+        CharacterChecker();
+
         float moveX = Input.GetAxis("Horizontal");
         movement = new Vector2(moveX, 0.0f);
 
@@ -88,8 +117,53 @@ public class ScriptPlayerController : MonoBehaviour
             reverseImage();
         }
 
-        if (IsGrounded()) bIsInAir = false;
+        if (transform.position.y < -50)
+        {
+            DeathText1.SetActive(true);
+            if (transform.position.y < -100)
+            {
+                DeathText2.SetActive(true);
+                if (transform.position.y < -150)
+                {
+                    DeathText3.SetActive(true);
+                    if (transform.position.y < -200)
+                    {
+                        DeathText4.SetActive(true);
+                        if (transform.position.y < -250)
+                        {
+                            DeathText5.SetActive(true);
+                            if (transform.position.y < -300)
+                            {
+                                DeathText6.SetActive(true);
+                            }
+                        }
+                    }
+                }
 
+                if (IsGrounded()) bIsInAir = false;
+
+            }
+        }
+
+    }
+
+     private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.tag == "GonDie")
+        {
+            characterDeath = CHARACTERDEATH.ACIDLASER;
+        }
+    }
+
+    private void CharacterChecker()
+    {
+        if(characterDeath != CHARACTERDEATH.NOTDEAD)
+        {
+            if(Input.anyKey)
+            {
+                SceneManager.LoadScene("PauseTest");
+            }
+        }
     }
 
     private void FixedUpdate()
@@ -119,6 +193,7 @@ public class ScriptPlayerController : MonoBehaviour
                 rigidbody2D.velocity = new Vector2(rigidbody2D.velocity.x, -fMaxWallSlideVelocity);
             }
         }
+
     }
 
     private void Jump()
@@ -130,7 +205,7 @@ public class ScriptPlayerController : MonoBehaviour
 
                 if (!bWallSliding)
                 {
-                    bIsInAir = true;
+                    bIsInAir = false;
                     rigidbody2D.velocity = new Vector2(rigidbody2D.velocity.x, fJumpTimer * 5.0f);
                 }
 
@@ -139,6 +214,7 @@ public class ScriptPlayerController : MonoBehaviour
                     rigidbody2D.velocity = new Vector2(-150.0f + (fSpeed * 3), fJumpTimer * 5.0f);
                     bIsInAir = true;
                     reverseImage();
+
                 }
         }
     }
@@ -167,7 +243,6 @@ public class ScriptPlayerController : MonoBehaviour
     }
     private void reverseImage()
     {
-        Debug.Log("Rotate");
         facingLeft = !facingLeft;
         Vector3 scale = rigidbody2D.transform.localScale;
         scale.x *= -1;

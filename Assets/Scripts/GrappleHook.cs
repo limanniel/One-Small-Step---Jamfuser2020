@@ -24,13 +24,12 @@ public class GrappleHook : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (joint.distance > 2.0f)
+        if (joint.distance > 1.0f)
             joint.distance -= Time.deltaTime * ropePull;
             
         else
         {
-            //rope.enabled = false;
-            //joint.enabled = false;
+
         }
 
         if (Input.GetMouseButtonDown(0))
@@ -55,7 +54,10 @@ public class GrappleHook : MonoBehaviour
                 rope.SetPosition(0, transform.position);
                 rope.SetPosition(1, hit.point);
 
-                player.GetComponent<Rigidbody2D>().velocity = new Vector2((targetPos.x - transform.position.x), (targetPos.y - transform.position.y) *2);
+                player.GetComponent<Rigidbody2D>().gravityScale = 0.7f;
+                player.GetComponent<Rigidbody2D>().velocity += new Vector2((targetPos.x - transform.position.x), (targetPos.y - transform.position.y) *2);
+
+
             }
         }
         if (Input.GetMouseButton(0))
