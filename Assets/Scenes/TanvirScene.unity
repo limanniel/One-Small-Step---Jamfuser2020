@@ -1143,6 +1143,11 @@ PrefabInstance:
       propertyPath: m_Constraints
       value: 4
       objectReference: {fileID: 0}
+    - target: {fileID: 6072410778859794156, guid: c740a2f5d9f560347a75a3b0c86b2c64,
+        type: 3}
+      propertyPath: m_CollisionDetection
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6072410778859794154, guid: c740a2f5d9f560347a75a3b0c86b2c64,
         type: 3}
       propertyPath: wallCheck
