@@ -45,7 +45,8 @@ public class PlayerController : MonoBehaviour
                 return;
             }
 
-            Debug.Log(rigidBody.velocity);
+            //Debug.Log(rigidBody.velocity);
+            Debug.Log(isGrounded);
         }
     }
 
