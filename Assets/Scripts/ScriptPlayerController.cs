@@ -16,6 +16,8 @@ public class ScriptPlayerController : MonoBehaviour
     private bool bIsJumping;
     public LayerMask ground;
 
+    public CameraShake cameraShake;
+
     private new Rigidbody2D rigidbody2D;
     private new Animator animation;
     private bool facingLeft;
@@ -49,7 +51,10 @@ public class ScriptPlayerController : MonoBehaviour
         animation.SetFloat("Speed", Mathf.Abs(rigidbody2D.velocity.x));
 
         if (Input.GetButtonDown("Jump") && IsGrounded())
+        {
             bIsJumping = true;
+            StartCoroutine(cameraShake.Shake(0.35f, 0.05f));
+        }
 
         if (moveX < 0 && !facingLeft)
         {
