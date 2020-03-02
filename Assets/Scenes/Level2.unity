@@ -35765,6 +35765,11 @@ PrefabInstance:
       propertyPath: line
       value: 
       objectReference: {fileID: 1603202800}
+    - target: {fileID: 8360923474294460516, guid: 57e0093393f4c8c4d9d57c2110bec32a,
+        type: 3}
+      propertyPath: hitMaxDistance
+      value: 1.5
+      objectReference: {fileID: 0}
     - target: {fileID: 8360923474294460518, guid: 57e0093393f4c8c4d9d57c2110bec32a,
         type: 3}
       propertyPath: groundCheck
