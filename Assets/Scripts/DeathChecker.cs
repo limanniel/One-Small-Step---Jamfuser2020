@@ -75,7 +75,7 @@ public class DeathChecker : MonoBehaviour
                     if (!FindObjectOfType<AudioManager>().IsPlaying("PlayerDeath"))
                     {
                         FindObjectOfType<AudioManager>().Play("PlayerDeath", 1.0f, 1.0f);
-                        GetComponentInParent<PlayerController>().rigidBody.gravityScale = 0.07f;
+                        GetComponentInParent<PlayerController>().rigidBody.gravityScale = 0.02f;
                     }
                         
                 }
