@@ -48165,7 +48165,7 @@ GameObject:
   - component: {fileID: 1956469478}
   m_Layer: 9
   m_Name: DeathMap
-  m_TagString: Ground
+  m_TagString: GonDie
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -48671,12 +48671,12 @@ PrefabInstance:
     - target: {fileID: 8360923474294460513, guid: 57e0093393f4c8c4d9d57c2110bec32a,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -10.61504
+      value: -10.652
       objectReference: {fileID: 0}
     - target: {fileID: 8360923474294460513, guid: 57e0093393f4c8c4d9d57c2110bec32a,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.34
+      value: -0.341
       objectReference: {fileID: 0}
     - target: {fileID: 8360923474294460513, guid: 57e0093393f4c8c4d9d57c2110bec32a,
         type: 3}
@@ -48731,7 +48731,7 @@ PrefabInstance:
     - target: {fileID: 8360923474294460512, guid: 57e0093393f4c8c4d9d57c2110bec32a,
         type: 3}
       propertyPath: m_Constraints
-      value: 4
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8360923474294460512, guid: 57e0093393f4c8c4d9d57c2110bec32a,
         type: 3}
