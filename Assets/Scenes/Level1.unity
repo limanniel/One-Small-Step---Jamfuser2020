@@ -18121,8 +18121,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 94d80e5a3a0a5d743b80d059cc7524a3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  floatAround: 0
   floatStrength: 1
   rotationStrength: 100
+  passiveRotationStrength: 0
 --- !u!212 &640576637
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -18354,7 +18356,8 @@ PrefabInstance:
       propertyPath: m_LocalScale.x
       value: 0.25
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 7068008383517431107, guid: b4034abb6597d124cb90dbc9b85388a6, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: b4034abb6597d124cb90dbc9b85388a6, type: 3}
 --- !u!1 &942570932
 GameObject:
@@ -46863,7 +46866,8 @@ PrefabInstance:
       propertyPath: m_LocalScale.x
       value: 0.25
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 7068008383517431107, guid: b4034abb6597d124cb90dbc9b85388a6, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: b4034abb6597d124cb90dbc9b85388a6, type: 3}
 --- !u!1 &1242964346
 GameObject:
@@ -47431,7 +47435,8 @@ PrefabInstance:
       propertyPath: m_LocalScale.x
       value: 0.25
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 7068008383517431107, guid: b4034abb6597d124cb90dbc9b85388a6, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: b4034abb6597d124cb90dbc9b85388a6, type: 3}
 --- !u!1 &1521233262
 GameObject:
@@ -49330,7 +49335,8 @@ PrefabInstance:
       propertyPath: m_UsedByEffector
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 7068008383517431107, guid: b4034abb6597d124cb90dbc9b85388a6, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: b4034abb6597d124cb90dbc9b85388a6, type: 3}
 --- !u!1 &2130711487
 GameObject:
