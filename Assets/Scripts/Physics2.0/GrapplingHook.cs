@@ -5,7 +5,8 @@ using UnityEngine;
 public class GrapplingHook : MonoBehaviour
 {
     public float hitMaxDistance = 20.0f;
-    public float pullStep = 0.05f;
+    public float pullDistance = 0.5f;
+    public float pullSpeed = 0.05f;
     public LayerMask layerMask;
     public LineRenderer line;
 
@@ -25,9 +26,9 @@ public class GrapplingHook : MonoBehaviour
     void Update()
     {
 
-        if (joint.distance > 1.0f)
+        if (joint.distance > pullDistance)
         {
-            joint.distance -= pullStep * Time.deltaTime;
+            joint.distance -= pullSpeed * Time.deltaTime;
         }
         else
         {
