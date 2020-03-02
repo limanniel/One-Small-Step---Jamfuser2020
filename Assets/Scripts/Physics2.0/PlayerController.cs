@@ -24,11 +24,9 @@ public class PlayerController : MonoBehaviour
     private bool facingRight = true;
     [SerializeField]
     private bool isTouchingWall;
-    private bool isWallSliding;
+    public bool isWallSliding;
     private AudioManager audioMGR;
-    private bool isExecuting;
-    
-
+   
     // Start is called before the first frame update
     void Start()
     {
@@ -44,7 +42,6 @@ public class PlayerController : MonoBehaviour
         wallCheckDistance = 0.15f;
         wallSlideSpeed = 0.2f;
         groundCheckRadius = 0.06f;
-        isExecuting = false;
     }
 
     private void Update()
@@ -89,7 +86,6 @@ public class PlayerController : MonoBehaviour
                 {
                     if (!audioMGR.IsPlaying("WallSlide"))
                     {
-                        Debug.Log(audioMGR.IsPlaying("WallSlide"));
                         audioMGR.Play("WallSlide", 0.1f, 1.0f, false);
                     }
                     rigidBody.velocity = new Vector2(rigidBody.velocity.x, -wallSlideSpeed);
