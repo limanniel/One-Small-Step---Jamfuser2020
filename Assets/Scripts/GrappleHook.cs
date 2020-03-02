@@ -49,7 +49,7 @@ public class GrappleHook : MonoBehaviour
                     targetPos = asteroid.transform.position;
                     targetPos.z = 0;
                     compDistance = asteroidDistance;
-                    
+
                 }
             }
 
@@ -60,7 +60,7 @@ public class GrappleHook : MonoBehaviour
             //if hit and the object is a rigid body.
             if (hit.collider != null && hit.collider.gameObject.GetComponent<Rigidbody2D>() != null && asteroidDistance < 5.0f)
             {
-                
+
                 joint.enabled = true;
                 joint.connectedBody = hit.collider.gameObject.GetComponent<Rigidbody2D>();
 
