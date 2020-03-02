@@ -66,6 +66,7 @@ public class DeathChecker : MonoBehaviour
                 DeathTextCanvas[i - 1].gameObject.SetActive(true);
                 characterDeath = CHARACTERDEATH.KARS;
                 enumNumber = (int)characterDeath;
+                animator.SetInteger("currentLifeState", enumNumber);
             }
         }
     }
