@@ -11,6 +11,7 @@ public class GrappleHook : MonoBehaviour
     private float ropePull = 4.0f;
     private DistanceJoint2D joint;
     private Rigidbody2D rigidBody;
+    private AudioManager audioMGR;
     private GameObject[] asteroids;
     private float asteroidDistance;
     private float compDistance;
@@ -22,6 +23,9 @@ public class GrappleHook : MonoBehaviour
         joint = GetComponent<DistanceJoint2D>();
         joint.enabled = false;
         rope.enabled = false;
+        audioMGR = FindObjectOfType<AudioManager>();
+
+        if (!audioMGR) { Debug.Log("No audio manager"); }
         compDistance = 100.0f;
 
         asteroids = GameObject.FindGameObjectsWithTag("Hooker");
