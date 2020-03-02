@@ -26,7 +26,6 @@ public class Blackhole : MonoBehaviour
         if (transform.position.x - radius < playerCharacter.transform.position.x && transform.position.x + radius > playerCharacter.transform.position.x &&
             transform.position.y + yOffset - radius < playerCharacter.transform.position.y && transform.position.y + yOffset + radius > playerCharacter.transform.position.y)
         {
-            Debug.Log("Blackhole");
             playerCharacter.transform.position = new Vector2(transform.position.x, transform.position.y + yOffset);
             inBlackhole = true;
         }

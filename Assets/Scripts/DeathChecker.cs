@@ -8,7 +8,11 @@ public class DeathChecker : MonoBehaviour
 {
     [SerializeField]
     public GameObject[] DeathTextCanvas;
-    public ParticleSystem particleEffects;
+    [SerializeField]
+    private Sprite[]    DeathSprite;
+    private Animator    animator;
+    int                 enumNumber;
+     public ParticleSystem particleEffects;
 
     enum CHARACTERDEATH
     {
@@ -17,12 +21,13 @@ public class DeathChecker : MonoBehaviour
         KARS,
         BLACKHOLE
     }
-
+    
     CHARACTERDEATH characterDeath = CHARACTERDEATH.NOTDEAD;
 
     private void Start()
     {
-        particleEffects.Pause();
+        animator = GetComponent<Animator>();
+        //particleEffects.Pause();
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -30,9 +35,12 @@ public class DeathChecker : MonoBehaviour
         if (collision.gameObject.tag == "GonDie")
         {
             characterDeath = CHARACTERDEATH.ACIDLASER;
-            particleEffects.transform.position = transform.position;
-            particleEffects.Play();
+            enumNumber = (int)characterDeath;
+            animator.SetInteger("currentLifeState", enumNumber);
+            //particleEffects.transform.position = transform.position;
+           // particleEffects.Play();
         }
+        
     }
 
     private void CharacterChecker()
@@ -41,7 +49,7 @@ public class DeathChecker : MonoBehaviour
         {
             if (Input.anyKey)
             {
-                SceneManager.LoadScene("PauseTest");
+                SceneManager.LoadScene("Level1");
             }
         }
     }
@@ -49,15 +57,16 @@ public class DeathChecker : MonoBehaviour
     private void Update()
     {
         CharacterChecker();
+        enumNumber = (int)characterDeath;
 
         for (int i = 1; i < 7; i++)
         {
-            if (GetComponent<Transform>().position.y < -500*i)
+            if (GetComponent<Transform>().position.y < -500 * i)
             {
-                DeathTextCanvas[i-1].gameObject.SetActive(true);
+                DeathTextCanvas[i - 1].gameObject.SetActive(true);
                 characterDeath = CHARACTERDEATH.KARS;
+                enumNumber = (int)characterDeath;
             }
         }
     }
-    
 }

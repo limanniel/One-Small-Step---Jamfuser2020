@@ -23,6 +23,8 @@ public class PlayerController : MonoBehaviour
         animator = GetComponent<Animator>();
     }
 
+    private Vector2 movement = Vector3.zero;
+
     private void Update()
     {
         if (rigidBody)
