@@ -19,6 +19,8 @@ public class PlayerController : MonoBehaviour
     public float wallPushForce;
 
     // Private vars
+    public bool stopMovement;
+    public bool canJump;
     public Rigidbody2D rigidBody;
     private Animator animator;
     private bool facingRight = true;
@@ -42,6 +44,8 @@ public class PlayerController : MonoBehaviour
         wallCheckDistance = 0.15f;
         wallSlideSpeed = 0.2f;
         groundCheckRadius = 0.06f;
+        stopMovement = false;
+        canJump = true;
     }
 
     private Vector2 movement = Vector3.zero;
@@ -56,7 +60,7 @@ public class PlayerController : MonoBehaviour
                 Jump();
             }
 
-            if (!isWallSliding)
+            if (!isWallSliding && !stopMovement)
                 HorizontalMovement();
 
             // Check to not go faster than max speed (moveSpeed)
@@ -134,6 +138,8 @@ public class PlayerController : MonoBehaviour
 
     private void Jump()
     {
+        if (!canJump) return;
+
         if (!isWallSliding)
         {
             rigidBody.AddForce(new Vector2(0.0f, jumpForce), ForceMode2D.Impulse);

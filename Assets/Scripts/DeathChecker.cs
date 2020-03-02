@@ -19,7 +19,8 @@ public class DeathChecker : MonoBehaviour
         NOTDEAD = 0,
         ACIDLASER,
         KARS,
-        BLACKHOLE
+        BLACKHOLE,
+        KIRA
     }
     
     CHARACTERDEATH characterDeath = CHARACTERDEATH.NOTDEAD;
@@ -40,7 +41,11 @@ public class DeathChecker : MonoBehaviour
             //particleEffects.transform.position = transform.position;
            // particleEffects.Play();
         }
-        
+
+        if (collision.gameObject.tag == "Kira")
+        {
+            characterDeath = CHARACTERDEATH.KIRA;
+        }
     }
 
     private void CharacterChecker()
