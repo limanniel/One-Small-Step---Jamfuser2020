@@ -44,6 +44,8 @@ public class PlayerController : MonoBehaviour
         groundCheckRadius = 0.06f;
     }
 
+    private Vector2 movement = Vector3.zero;
+
     private void Update()
     {
         if (rigidBody)
@@ -68,7 +70,6 @@ public class PlayerController : MonoBehaviour
                 rigidBody.velocity = new Vector2(-moveSpeed, rigidBody.velocity.y);
                 return;
             }
-
             CheckIfWallSliding();
         }
     }
