@@ -1,0 +1,100 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &3244081158966499646
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3244081158966499640}
+  - component: {fileID: 3244081158966499647}
+  m_Layer: 0
+  m_Name: AudioManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3244081158966499640
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3244081158966499646}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -10.094583, y: -0.9080074, z: -15.631351}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3244081158966499647
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3244081158966499646}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 18b09392fd50b974cad3279e91bdf616, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sounds:
+  - name: Jump
+    clip: {fileID: 8300000, guid: d96751f8cdfcfc44b85feda9b5d94b8d, type: 3}
+    volume: 0.427
+    pitch: 0
+    loop: 0
+    source: {fileID: 0}
+  - name: Black Hole
+    clip: {fileID: 8300000, guid: 591c7d4c2e726bd4f8149778d87bbb1e, type: 3}
+    volume: 0.427
+    pitch: 0
+    loop: 0
+    source: {fileID: 0}
+  - name: Player Death
+    clip: {fileID: 0}
+    volume: 0.427
+    pitch: 0
+    loop: 0
+    source: {fileID: 0}
+  - name: GrapplingHookStart
+    clip: {fileID: 0}
+    volume: 0.427
+    pitch: 0
+    loop: 0
+    source: {fileID: 0}
+  - name: GrapplingHookGrapple
+    clip: {fileID: 8300000, guid: 042908ce561a0bc4cad026ffd97bd14d, type: 3}
+    volume: 0.427
+    pitch: 0
+    loop: 0
+    source: {fileID: 0}
+  - name: GrapplingHookRetract
+    clip: {fileID: 8300000, guid: 4bd7f5927927f814987b31a3fc17f936, type: 3}
+    volume: 0.427
+    pitch: 0
+    loop: 0
+    source: {fileID: 0}
+  - name: GrapplingHookPull
+    clip: {fileID: 8300000, guid: 94acbda911f4c4f49828c04883b4f80b, type: 3}
+    volume: 0.427
+    pitch: 0
+    loop: 0
+    source: {fileID: 0}
+  - name: WallSlide
+    clip: {fileID: 8300000, guid: db0dee2a91f07cc428de40a681a3d8e1, type: 3}
+    volume: 0.427
+    pitch: 0
+    loop: 0
+    source: {fileID: 0}
+  - name: WallJump
+    clip: {fileID: 8300000, guid: acb48fae9784bfd4099da2da6dc5d914, type: 3}
+    volume: 0.427
+    pitch: 0
+    loop: 0
+    source: {fileID: 0}

@@ -58,15 +58,28 @@ public class DeathChecker : MonoBehaviour
     {
         CharacterChecker();
         enumNumber = (int)characterDeath;
+ 
 
         for (int i = 1; i < 7; i++)
         {
             if (GetComponent<Transform>().position.y < -500 * i)
             {
+                
                 DeathTextCanvas[i - 1].gameObject.SetActive(true);
                 characterDeath = CHARACTERDEATH.KARS;
                 enumNumber = (int)characterDeath;
                 animator.SetInteger("currentLifeState", enumNumber);
+
+                if (characterDeath == CHARACTERDEATH.KARS)
+                {
+                    if (!FindObjectOfType<AudioManager>().IsPlaying("PlayerDeath"))
+                    {
+                        FindObjectOfType<AudioManager>().Play("PlayerDeath", 1.0f, 1.0f);
+                        GetComponentInParent<PlayerController>().rigidBody.gravityScale = 0.07f;
+                    }
+                        
+                }
+                    
             }
         }
     }

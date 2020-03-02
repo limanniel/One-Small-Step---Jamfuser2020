@@ -19,7 +19,7 @@ public class PlayerController : MonoBehaviour
     public float wallPushForce;
 
     // Private vars
-    private Rigidbody2D rigidBody;
+    public Rigidbody2D rigidBody;
     private Animator animator;
     private bool facingRight = true;
     [SerializeField]
@@ -112,7 +112,7 @@ public class PlayerController : MonoBehaviour
             //    rigidBody.velocity = new Vector2(0.0f, rigidBody.velocity.y);
             //}
 
-            isGrounded = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, groundLayer);
+            //isGrounded = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, groundLayer);
             if (facingRight)
                 isTouchingWall = Physics2D.Raycast(wallCheck.position, transform.right, wallCheckDistance, groundLayer);
             else
